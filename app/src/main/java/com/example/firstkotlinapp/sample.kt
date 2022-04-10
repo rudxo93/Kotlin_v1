@@ -3,6 +3,7 @@ package com.example.firstkotlinapp
 fun main(){
     checkNum(1)
     forAndWhile()
+    nullcheck()
 }
 
 // 4. 조건식
@@ -127,5 +128,47 @@ fun forAndWhile(){
 
     for((index,name) in student.withIndex()){ // index와 name을 함께 사용할 수 있다.
         println("${index+1}번째 학생 : ${name}")
+    }
+}
+
+// 7. Nullable / NonNull
+fun nullcheck(){
+    /*
+     NPE : NULL pointer Exception
+     java에서는 compail시점에서 잡을 수 없고 runtime에서만 잡히기 때문에 play를 해봐야지만
+     알 수 있다.
+     BUT! Kotlin에서는 ?를 사용해서 compail시점에서 다 잡아줄 수 있다!
+    */
+    var name = "kim" // 기본적으로 NonNull타입
+    var nullName : String? = null // ?를 붙혀주게되면 Nullable타입이 된다.
+
+    var nameInUpperCase = name.toUpperCase() // name같은 경우
+    var nullNameInUpperCase = nullName?.toUpperCase()
+
+    // ?:(엘비스 연산자)
+
+    // 디폴트 값을 주고싶을때
+    val lastName : String? = null
+    val fullName = name + " " + (lastName?: "No lastName") // lastName이 Null일 경우
+    // 만약 lastName이 있는지? Null이 아닌지? null이 아니라면 lastName을 출력
+    // lastName이 없으면 No lastName을 출력을 한다
+    println(fullName)
+
+}
+// !! - compailer한테 이것은 Null이 아니라고 말하는 것
+fun ignoreNulls(str : String?){
+    // 인자로 str을 받는데 이것이 null타입일수도 있다.
+    // !!을 사용해서 str에는 절대 null이 들어올 리가 없다, 하는 경우 !!를 사용하게되면
+    // compailer한테 이것은 절대 null일리가 없으니까 그냥 null이 아니라고 생각하라고 알려준다.
+    val mNotNull : String = str!!
+    val upper = mNotNull.toUpperCase()
+    // But!! 이것을 사용하는 것을 지양해야 하는 이유는 정말 확실하지 않는 이상 만약 Null이 들어가게되면
+    // Null Pointer Exception을 일으키기 때문에 확실하게 null이 아니지 않는 이상 사용하는것을 지양해야 한다.
+
+    // email이 null이 아니면 let을 실행해라!
+    val email : String? = "asdfv@naver.com"
+    // let함수 - 자신의 Receiver객체를 람다식 내부로 옮겨서 실행하는 구문이다.
+    email?.let{ // 여기서는 email을 람다식 내부로 옮겨준다.
+        println("my email is ${email}")
     }
 }
