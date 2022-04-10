@@ -2,6 +2,7 @@ package com.example.firstkotlinapp
 
 fun main(){
     checkNum(1)
+    forAndWhile()
 }
 
 // 4. 조건식
@@ -87,7 +88,44 @@ fun array(){
     val arrayList = arrayListOf<Int>()
     arrayList.add(10) // arrayList에 10이 추가되었다.
     arrayList.add(20)
+    arrayList[0] = 20
 
     //arrayList = arrayListOf() // but 새로운 객체를 생성해서 할당하는 경우 오류발생!
+}
 
+// 6. For / While
+fun forAndWhile(){
+    val student = arrayListOf("kim", "Lee", "jung", "Park")
+
+    for(name in student){ // in이라는 연산자를 이용해서 반복조건문을 사용한다.
+        println("${name}")
+    }
+
+    var sum : Int = 0
+    for( i in 1..10){
+        sum += i
+    }
+    println(sum)
+/*
+    for( i in 1..10 step 2){ // 2칸씩 가라 -> 1,3,5,7,9
+        sum += i
+    }
+
+    for( i in 10 downTo 1){ // 10부터 차례대로 10,9,8,7,6,...,1
+        sum += i
+    }
+
+    for( i in 1 until 100){ // 1..100과 다른점은 100이 포함되지 않는다. 1~99
+        sum += i
+    }
+*/
+    var index = 0
+    while(index < 10){
+        println("current index : ${index}")
+        index ++ // 0~9까지 출력이 된다.
+    }
+
+    for((index,name) in student.withIndex()){ // index와 name을 함께 사용할 수 있다.
+        println("${index+1}번째 학생 : ${name}")
+    }
 }
