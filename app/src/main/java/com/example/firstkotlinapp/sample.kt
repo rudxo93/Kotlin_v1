@@ -55,3 +55,39 @@ fun checkNum(score : Int) {
  Expression -> 어떠한 행위로 값을 반환한다.
  Statement -> ~해라! / 명령을 지시하는 문장같은 경우
  */
+
+/*
+ 5. Array and List
+    Array - 기본적으로 정해져있는 size가 있다. (메모리가 할당이 되어서 나옴)
+            처음에 크기를 지정해주어야 한다.
+    List - 1. List - 수정이 불가능하다.
+           2. MutableList - 수정이 가능하다.
+ */
+
+fun array(){
+    val array = arrayOf(1,2,3)// array초기화
+    val list = listOf(1,2,3) // list 초기화
+
+    val array2 = arrayOf(1,"d",3.4f)
+    val list2 = listOf(1,"r",114F)
+    // 기본적으로 array는 MutableList이다.
+    // 즉 값을 변경하는 것이 가능하다.(size를 변경하지 않는다면)
+    array[0] = 2
+    /*
+     list는 값을 변경하지 못하는 읽기전용이다.
+     list[0] = 2 -> 리스트의 값을 변경하는 것은 불가능!
+     list의 경우 array와 다르게 interface이다.
+     list.get해서 가져올 수 있고 가져온 값을 result에 넣어줄 수 있지만
+     직접적으로 바꾸는 것은 불가능하다.
+     */
+    var result = list.get(0)
+
+    // MutableList의 가장 대표적인 것이 arrayList이다.
+    // arrayList의 참조값(주소값)자체는 바뀌지 않기 때문에 val을 사용해도 된다.
+    val arrayList = arrayListOf<Int>()
+    arrayList.add(10) // arrayList에 10이 추가되었다.
+    arrayList.add(20)
+
+    //arrayList = arrayListOf() // but 새로운 객체를 생성해서 할당하는 경우 오류발생!
+
+}
