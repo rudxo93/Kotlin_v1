@@ -20,7 +20,7 @@ fun main(){
 // 만약 name을 객체를 생성할때 꼭 정의해주고 싶으면 어떻게 하면될까?
 // constructor 생성자를 이용한다.
 
-class Human(val name : String = "Anonymous"){ // constructor을 생략해주어도 무방하다.
+open class Human(val name : String = "Anonymous"){ // constructor을 생략해주어도 무방하다.
 
     init { // 주생성자의 일부, Human class가 생성됨과 동시에 같이 코드블럭이 돈다.
         println("New Human has been born!!")
@@ -49,18 +49,34 @@ class Human(val name : String = "Anonymous"){ // constructor을 생략해주어�
     fun eatingbeef(){
         println("this is so big~~!!!")
     }
+
+    open fun signASong(){
+        println("lalal")
+    }
 }
 fun main(){
-//    val human = Human("Park")
-//    val stranger = Human() // 현재 디폴트값을 줬기 때문에 이렇게 해도 생성자가 생성된다.
-//    human.eatingbeef()
-    /*
-        주의깊게 봐야할 것!
-        mother객체를 생성했는데 위에서 init먼저 생성이된다.
-        왜냐하면 init은 주생성자의 일부이다.
-        constructor가 아무리 많이 있어도 init블록 먼저 실행이 되고 constructor블록이 실행이 된다.
-     */
-    val mother = Human("Park", 45)
+    val korean = Korean()
+    korean.signASong()
+}
 
-//    println("this human's name is ${stranger.name}")
+// 상속!!!!
+/*
+    java에서는 extends를 사용했다.
+    Kotlin에서는 extends대신에 : 를 사용한다.
+    Kotlin의 클래스는 기본적으로 fireClass? 이다.
+    그래서 아무리 같은 file내에 있더라도 접근하지 못한다.
+    class앞에 open을 해주어야 한다.
+ */
+class Korean : Human(){ // 상속은 java와 같이 하나만 가능하다.
+    // java라면 가능했지만 override가 되지않는 이유는 아까 open해줬던 이유와 같다.
+    // 마찬가지로 signASong에 open을 해준다.
+    override fun signASong(){
+        super.signASong()
+        println("라라라!")
+        // 이때 name을 사용할 수 있는 이유는 Human을 상속을 할때 Human은 constructor에서 name을 받아온다.
+        // 그런데 디폴트 값을 정해줌으로써 생성자의 parameter가 없는 것까지 만들어줬다.
+        // 그래서 현재 Anonymous를 name으로 받아온것이다.
+        println("my name is ${name}")
+
+    }
 }
