@@ -1,9 +1,25 @@
 package com.example.firstkotlinapp
 
 fun main(){
-    helloWorld()
 
-    println(add(4, 5))
+    // 3. String Template
+    // ${}를 사용해서 변수 출력
+    val name = "kim"
+    var lastname = "hong"
+    println("my name is ${name + lastname} I'm 25")
+
+    println("is this true? ${1==0}")  // false
+
+    println("this is 2\$a") // 만약 $표시를 사용하고 싶다면 $앞에 \를 붙혀주면 문자가 된다.
+
+    // 한 줄 주석
+    /* 여러줄 주석 입니다.*/
+
+//    Ctrl + / 선택한 여러줄 동시 주석
+//    println("my name is ${name + lastname} I'm 25")
+//    println("my name is ${name + lastname} I'm 25")
+//    println("my name is ${name + lastname} I'm 25")
+
 }
 
 // 1. 함수
