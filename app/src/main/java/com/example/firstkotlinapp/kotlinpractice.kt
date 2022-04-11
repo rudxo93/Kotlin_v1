@@ -37,10 +37,6 @@ fun main(){
     invokeLamda { it > 3.2433 }
 
     // 3. 익명 내부 함수
-
-
-
-
 }
 
 //val square : (Int) -> (Int) = {number -> number * number}
